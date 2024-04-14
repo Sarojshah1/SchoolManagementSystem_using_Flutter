@@ -7,7 +7,7 @@ import '../../../models/PaymentModel.dart';
 class PaymentRepository {
   Future<List<PaymentModel>> fetchPayments() async {
     print("hello from payment");
-    final response = await http.get(Uri.parse('http://192.168.56.1:7000/Payments'));
+    final response = await http.get(Uri.parse('https://school-management-system-backend-eight.vercel.app/Payments'));
     print(response.body);
     if (response.statusCode == 200) {
       print(response.statusCode);

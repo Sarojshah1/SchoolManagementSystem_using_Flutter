@@ -10,6 +10,7 @@ import 'package:velocity_x/velocity_x.dart';
 import '../HomeScreen/StudentHomeScreen.dart';
 import 'Widgets/customButton.dart';
 import 'Widgets/customTextfield.dart';
+import 'otp.dart';
 
 class LoginScreen extends StatelessWidget {
   @override
@@ -86,6 +87,7 @@ class _LoginFormState extends State<LoginForm> {
             }, height: 50, width: 290,text: "Login",radius: 20,),
             Gap(10.h),
             TextButton(onPressed: (){
+              Navigator.push(context,  MaterialPageRoute(builder: (context) => SendOTPPage(),));
 
             }, child: Text("Forget Password?",style: TextStyle(fontSize: 14.w,fontWeight: FontWeight.w500),))
           ],

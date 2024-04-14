@@ -38,7 +38,7 @@ class _StudentResultState extends State<StudentResult> {
         backgroundColor: Vx.blue700,
         leading: Image.asset(Examscreen),
         title: Text(
-          "ADD MARKS",
+          "YOUR RESULTS",
           style: TextStyle(fontWeight: FontWeight.w400, fontSize: 24.w, color: Colors.white),
         ),
       ),
@@ -50,6 +50,14 @@ class _StudentResultState extends State<StudentResult> {
               child: CircularProgressIndicator(),
             );
           } else if (state is ResultLoadedState) {
+            if (state.results.isEmpty) {
+              return Center(
+                child: Text(
+                  "No results available.",
+                  style: TextStyle(fontSize: 16.sp, color: Colors.black87),
+                ),
+              );
+            }
             _highestTerm = _findHighestTerm(state.results);
             return SingleChildScrollView(
               scrollDirection: Axis.vertical,

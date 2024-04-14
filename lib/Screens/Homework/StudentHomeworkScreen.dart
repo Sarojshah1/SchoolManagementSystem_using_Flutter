@@ -7,6 +7,8 @@ import 'package:schoolmanagementsystem/Screens/Homework/widgets/Homeworkcard.dar
 import 'package:velocity_x/velocity_x.dart';
 
 import '../../Utils/Image_Constant.dart';
+import '../../models/Assignment_model.dart';
+
 
 class StudentHomeworkScreen extends StatefulWidget {
   const StudentHomeworkScreen({Key? key}) : super(key: key);
@@ -16,8 +18,20 @@ class StudentHomeworkScreen extends StatefulWidget {
 }
 
 class _StudentHomeworkScreenState extends State<StudentHomeworkScreen> {
+
   late AssignmantBloc _assignmentBloc;
   late AssignmentRepository _assignmentRepository;
+  List<Assignment> _getFilteredHomework(List<Assignment> allHomework) {
+    final today = DateTime.now();
+    print(today);
+    return allHomework.where((homework) {
+      print(homework.dueDate!.day);
+      return homework.dueDate!.year >= today.year &&
+          homework.dueDate!.month >= today.month &&
+          homework.dueDate!.day >= today.day;
+    }).toList();
+
+  }
 
   @override
   void initState() {
@@ -25,6 +39,7 @@ class _StudentHomeworkScreenState extends State<StudentHomeworkScreen> {
     _assignmentRepository = AssignmentRepository();
     _assignmentBloc = AssignmantBloc(_assignmentRepository);
     _assignmentBloc.add(FetchAssignments());
+
   }
 
   @override
@@ -60,12 +75,23 @@ class _StudentHomeworkScreenState extends State<StudentHomeworkScreen> {
                 bloc: _assignmentBloc,
                 builder: (context, state) {
                   if (state is AssignmentLoadSuccess) {
+                    final filteredHomework = _getFilteredHomework(state.assignments);
+                    if (filteredHomework.isEmpty) {
+                      return Center(
+                        child: Text(
+                          'No homework due today.',
+                          style: TextStyle(fontSize: 16.sp),
+                        ),
+                      );
+                    }
+
                     return ListView.builder(
-                      itemCount: state.assignments.length,
+                      itemCount:  filteredHomework.length,
                       itemBuilder: (context, index) {
                         final assignment = state.assignments[index];
                         return HomeworkCard(
                           subject: assignment.subject ?? '',
+                          title: assignment.title ?? "",
                           description: assignment.description ?? '',
                           dueDate: 'Due on: ${assignment.dueDate}',
                         );

@@ -21,7 +21,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     emit(ProfileLoading());
     try {
       final username = UserManager().username;
-      final url = Uri.parse('http://192.168.56.1:7000/Student/$username');
+      final url = Uri.parse('https://school-management-system-backend-eight.vercel.app/Student/$username');
       final response = await http.get(url);
 
       if (response.statusCode == 200) {

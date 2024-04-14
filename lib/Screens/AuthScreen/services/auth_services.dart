@@ -13,8 +13,8 @@ class AuthService {
 
   Future<String> login({required String username, required String password}) async {
     print(baseUrl);
-    final url = Uri.parse('http://192.168.56.1:7000/Student/login');
-    final url1 = Uri.parse('http://192.168.56.1:7000/Student/$username');
+    final url = Uri.parse('https://school-management-system-backend-eight.vercel.app/Student/login');
+    final url1 = Uri.parse('https://school-management-system-backend-eight.vercel.app/Student/$username');
     print(url);
     try {
       final response = await http.post(

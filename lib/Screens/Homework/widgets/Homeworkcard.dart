@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 class HomeworkCard extends StatelessWidget {
   final String subject;
+  final String title;
   final String description;
   final String dueDate;
 
   const HomeworkCard({
     Key? key,
     required this.subject,
+    required this.title,
     required this.description,
     required this.dueDate,
   }) : super(key: key);
@@ -29,10 +31,15 @@ class HomeworkCard extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 5.h),
+            SizedBox(height: 7.h),
+            Text(
+              title,
+              style: TextStyle(fontSize: 16),
+            ),
+            SizedBox(height: 10.h),
             Text(
               description,
-              style: TextStyle(fontSize: 16),
+              style: TextStyle(fontSize: 12),
             ),
             SizedBox(height: 10.h),
             Text(

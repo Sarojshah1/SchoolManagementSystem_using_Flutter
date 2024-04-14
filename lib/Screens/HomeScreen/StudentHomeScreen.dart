@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:gap/gap.dart';
+import 'package:schoolmanagementsystem/Screens/AuthScreen/LoginScreen.dart';
 
 import '../../Utils/Image_Constant.dart';
 import 'Widgets/HomeCustomButton.dart';
@@ -19,7 +20,15 @@ class _StudentHomeState extends State<StudentHome> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-
+        actions: [
+          IconButton(
+            icon: Icon(Icons.logout),
+            onPressed: () {
+              // Implement logout functionality here
+              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginScreen(),));
+            },
+          ),
+        ],
       ),
       body: Column(
         children: [

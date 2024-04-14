@@ -9,7 +9,7 @@ class AttendanceService {
   static Future<List<AttendanceModel>> getAttendance() async {
     print("hello from attendance service");
     final username = UserManager().username;
-    final response = await http.get(Uri.parse('http://192.168.56.1:7000/studentattendance/$username'));
+    final response = await http.get(Uri.parse('https://school-management-system-backend-eight.vercel.app/studentattendance/$username'));
     print(response.body);
     if (response.statusCode == 200) {
       print(response.statusCode);

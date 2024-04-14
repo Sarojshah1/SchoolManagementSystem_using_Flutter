@@ -8,7 +8,7 @@ class FeesService {
 
   static Future<List<Fee>> getFees() async {
     print("hello from fees service");
-    final response = await http.get(Uri.parse('http://192.168.56.1:7000/fee'));
+    final response = await http.get(Uri.parse('https://school-management-system-backend-eight.vercel.app/fee'));
     print(response.body);
     if (response.statusCode == 200) {
       print(response.statusCode);

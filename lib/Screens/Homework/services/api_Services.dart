@@ -4,7 +4,7 @@ import '../../../models/Assignment_model.dart';
 
 class AssignmentRepository {
   Future<List<Assignment>> fetchAssignments() async {
-    final response = await http.get(Uri.parse('http://192.168.56.1:7000/assignment'));
+    final response = await http.get(Uri.parse('https://school-management-system-backend-eight.vercel.app/assignment'));
     print(response.body);
     if (response.statusCode == 200) {
       final dynamic jsonResponse = json.decode(response.body);

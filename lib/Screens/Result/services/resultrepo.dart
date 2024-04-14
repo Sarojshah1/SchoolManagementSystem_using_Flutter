@@ -7,7 +7,7 @@ import '../../../models/resultModel.dart';
 class ResultRepository {
   Future<List<ResultModel>> fetchResults() async {
     try {
-      final response = await http.get(Uri.parse('http://192.168.56.1:7000/results'));
+      final response = await http.get(Uri.parse('https://school-management-system-backend-eight.vercel.app/results'));
       print(response.body);
       if (response.statusCode == 200) {
         print(response.statusCode);

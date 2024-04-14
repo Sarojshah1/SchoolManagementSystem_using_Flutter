@@ -51,6 +51,14 @@ class _StudentAttendanceScreenState extends State<StudentAttendanceScreen> {
               bloc: _AttendanceBloc, // Pass AttendanceBloc instance
               builder: (context, state) {
                 if (state is AttendanceLoaded) {
+                  if (state.attendanceList.isEmpty) {
+                    return Center(
+                      child: Text(
+                        "No results available.",
+                        style: TextStyle(fontSize: 16.sp, color: Colors.black87),
+                      ),
+                    );
+                  }
                   return AttendanceCard(// Example class name, replace with actual class name
                     totalClasses: state.totalDays ?? 0, // Pass totalDays from state
                     attendedClasses: state.presentDays, // Pass presentDays from state
